@@ -37,7 +37,8 @@ jobs:
         run: ls artifacts/
       - name: Verify Jar file
         run: jar -tf artifacts/restdemo-0.0.1-SNAPSHOT.jar | grep Configure
-
+      - name: Manifiest file
+        run: jar -xf artifacts/restdemo-0.0.1-SNAPSHOT.jar META-INF/MANIFEST.MF cat META-INF/MANIFEST.MF
 
 
       - name: Execute Java Program
