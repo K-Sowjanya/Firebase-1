@@ -33,17 +33,10 @@ jobs:
           git add artifacts/
           git commit -m "Add built artifact"
           git push origin HEAD:refs/heads/main
-      - name: List contents of artifacts directory
-        run: ls artifacts/
-      - name: Verify Jar file
-        run: jar -tf artifacts/restdemo-0.0.1-SNAPSHOT.jar | grep Configure
-      - name: Manifiest file
-        run: jar -xf artifacts/restdemo-0.0.1-SNAPSHOT.jar META-INF/MANIFEST.MF 
-      - name: cat
-        run: cat META-INF/MANIFEST.MF
+
 
 
       - name: Execute Java Program
-        run: java -cp artifacts/*restdemo-0.0.1-SNAPSHOT.jar Configure
+        run: java -jar artifacts/restdemo-0.0.1-SNAPSHOT.jar
 
       # Add additional steps here if needed
