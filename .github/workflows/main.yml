@@ -30,11 +30,10 @@ jobs:
         run: |
           git config --global user.name "${GITHUB_ACTOR}"
           git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+          git pull origin main  # Pull changes from remote repository
           git add artifacts/
           git commit -m "Add built artifact"
           git push origin HEAD:refs/heads/main
-
-
 
       - name: Execute Java Program
         run: java -jar artifacts/restdemo-0.0.1-SNAPSHOT.jar
