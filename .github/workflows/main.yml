@@ -35,6 +35,9 @@ jobs:
           git push origin HEAD:refs/heads/main
       - name: List contents of artifacts directory
         run: ls artifacts/
+      - name: Verify Jar file
+        run: jar -tf artifacts/restdemo-0.0.1-SNAPSHOT.jar | grep Configure
+
 
 
       - name: Execute Java Program
