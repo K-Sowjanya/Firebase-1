@@ -10,7 +10,7 @@ pipeline {
         
         stage('Set up JDK') {
             steps {
-                tool name: 'JDK 11', type: 'jdk'
+                tool name: 'JDK 17', type: 'jdk'
             }
         }
         
