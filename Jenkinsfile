@@ -16,14 +16,14 @@ pipeline {
         
         stage('Build with Maven') {
             steps {
-                sh 'mvn -B package pom.xml'
+                bat 'mvn -B package pom.xml'
             }
         }
         
         stage('Store artifact') {
             steps {
-                sh 'mkdir -p artifacts'
-                sh 'cp token/target/*.jar artifacts/'
+                bat 'mkdir artifacts'
+                bat 'copy token\\target\\*.jar artifacts\\'
             }
         }
         
@@ -34,17 +34,17 @@ pipeline {
                     gitUserName(gitActor)
                     gitUserEmail("${gitActor}@users.noreply.github.com")
                     checkout([$class: 'GitSCM', branches: [[name: '*/main']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'YOUR_CREDENTIALS_ID', url: 'YOUR_GITHUB_REPO_URL']]])
-                    sh 'git add artifacts/'
-                    sh 'git commit -m "Add built artifact"'
-                    sh 'git push origin HEAD:refs/heads/main'
+                    bat 'git add artifacts\\'
+                    bat 'git commit -m "Add built artifact"'
+                    bat 'git push origin HEAD:refs/heads/main'
                 }
             }
         }
         
-        // stage('Execute Java Program') {
-        //     steps {
-        //         sh 'java -cp artifacts/restdemo-0.0.1-SNAPSHOT.jar com.google.firebase.samples.config.Configure'
-        //     }
-        // }
+        stage('Execute Java Program') {
+            steps {
+                bat 'java -cp artifacts\\restdemo-0.0.1-SNAPSHOT.jar com.google.firebase.samples.config.Configure'
+            }
+        }
     }
 }
