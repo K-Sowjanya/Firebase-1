@@ -35,7 +35,7 @@ jobs:
           git commit -m "Add built artifact"
           git push origin HEAD:refs/heads/main
 
-      - name: Execute Java Program
-        run: java -cp artifacts/restdemo-0.0.1-SNAPSHOT.jar com.google.firebase.samples.config.Configure
+#       - name: Execute Java Program
+#         run: java -cp artifacts/restdemo-0.0.1-SNAPSHOT.jar com.google.firebase.samples.config.Configure
 
       # Add additional steps here if needed
